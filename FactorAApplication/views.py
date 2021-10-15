@@ -14,6 +14,7 @@ from rest_framework.decorators import api_view
 def posts(request):
     try:
         if request.method == 'GET':
+            # order data by top 5 score
             posts = Post.objects.order_by('-score')[:5]
             tutorials_serializer = PostSerializer(posts, many=True)
             return JsonResponse(tutorials_serializer.data, safe=False)
